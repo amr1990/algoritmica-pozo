@@ -1,0 +1,15 @@
+frumento 2
+garum 4
+pannum 1
+aere 10
+frumento 8
+aere 8
+garum 9
+aere 2
+aere 8
+frumento 10
+garum 2
+garum 10
+pannum 9
+armis 9
+garum 2
