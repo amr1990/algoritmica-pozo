@@ -42,5 +42,5 @@ def trol_sort_rec(li):
 
 if __name__ == '__main__':
 
-	p = readFile('cargament.txt')
+	p = readFile(sys.argv[1])
 	print trol_sort_it(p)
