@@ -37,7 +37,11 @@ def find_max(li):
 
 def trol_sort_rec(li):
 	#to do
-	pass
+	if len(li) == 1:
+		return li
+	else:
+		ms = find_max(li)
+		return max(ms, trol_sort_rec(li[1:]))
 
 
 if __name__ == '__main__':
