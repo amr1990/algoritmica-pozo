@@ -1,3 +1,3 @@
-# algoritmica-pozo
+# algoritmica_p1
 
-Pues eso.
+Practica 1 de la assignatura Algoritmica i complexitat.
