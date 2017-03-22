@@ -3,7 +3,7 @@
 import sys
 
 def load_cargo( filename ) :
-    return [line.split()[1] for line in open( filename )]
+    return [int(line.split()[1]) for line in open( filename )]
 
 def is_subseq(x, y):
     return all(c in iter(y) for c in x)

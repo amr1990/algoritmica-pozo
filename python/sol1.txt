@@ -1,2 +1,4 @@
-aere 1
-armis 2
+armis 1
+sparto 5
+garum 6
+aere 10
