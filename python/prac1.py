@@ -15,23 +15,22 @@ class Sequence(object):
 
 	#iterative version to find the longest sequence
 	def longest_seq_iter(self, itemList):	
-		LIS = []
-		LIS.append([(1,0)])
+		n = len(itemList)
+		dp = [(0, -1)]*n
+		# dp contains (best, idx) tuples, where best is the length of the longest
+		# increasing sequence starting from that element, and idx is the index of the
+		for i in range(n-1, -1, -1):
+			best = 0
+			idx = -1
+			for j in range(i+1, n):
+				if itemList[i][1] < itemList[j][1] and dp[j][0] + 1 > best:
+					best = dp[j][0] + 1
+					idx = j
+			dp[i] = (best, idx)
 
-		for i in range (1, len(itemList)):
-			LIS.append([])
-			for j in range (0, i):
-				if( itemList[i][1] >= itemList[j][1]):
-					if( len(LIS[i]) != 0 and ( LIS[i][0][0] < (LIS[j][0][0]+1))):
-						del LIS[i][:]
-					if( len(LIS[i]) == 0 or LIS[i][0][0] == (LIS[j][0][0]+1) ):
-						num = LIS[j][0][0] + 1
-						LIS[i].append( (num,j) )
+		longest = self.get_longest_seq(itemList, dp)
 
-				elif len(LIS[i]) == 0 :
-					LIS[i].append((1,i))
-
-  		self.printLIS(itemList, LIS)
+		return longest
 
 	#recursive version to find the longest sequence
 	def longest_seq_rec(self, itemList, last_increase=0):
@@ -50,12 +49,16 @@ class Sequence(object):
 
 
 	#auxiliary function to find the last increasing element
-	def find_last(self, current_last, previous):
-		if current_last[1] > previous[1]:
-			return current_last
-		else:
-			return previous
+	def get_longest_seq(self, itemList, indexList):
+		result = []
 
+		idx = max(range(len(itemList)), key=lambda i: indexList[i][0])
+
+		while idx != -1:
+			result.append(itemList[idx])
+			_, idx = indexList[idx]
+			#print idx
+		return result
 
 	#auxiliary function to obtain the longest size list
 	def get_longest_list(self, list1, list2):
@@ -71,34 +74,34 @@ class Sequence(object):
 			print elem[0], elem[1]  
 
 
+	#auxiliary function to obtain iterative cost
+	def get_cost_iter(self, itemList, cost=0):
+		n = len(itemList)
+		dp = [(0, -1)]*n
+		# dp contains (best, idx) tuples, where best is the length of the longest
+		# increasing sequence starting from that element, and idx is the index of the
+		for i in range(n-1, -1, -1):
+			best = 0
+			idx = -1
+			cost = cost + 1
+			for j in range(i+1, n):
+				if itemList[i][1] < itemList[j][1] and dp[j][0] + 1 > best:
+					best = dp[j][0] + 1
+					idx = j
+					cost = cost +1
+			dp[i] = (best, idx)
+
+		longest = self.get_longest_seq(itemList, dp)
+		return cost
 
 
 	#auxiliary function to obtain iterative cost
+	def get_cost_rec(self, itemList):
+		longest_seq_rec = Counter(longest_seq_rec)
+		test = longest_seq_rec(itemList)
 
+		return longest_seq_rec.counter
 
-
-
-	#auxiliary function to obtain iterative cost
-
-
-
-
-	def printLIS(self, lst, LIS):
-		maxlen = 0
-		for i in range (0, len(LIS)):
-			if( LIS[i][0][0] > maxlen ):
-				maxlen = LIS[i][0][0]
-
-		for i in range (0, len(LIS)):
-			if( LIS[i][0][0] == maxlen ):
-				self.printLIS_h(lst, LIS, i, "")      
-
-	def printLIS_h(self, lst, LIS, index, str):
-		for tuple in range ( 0, len(LIS[index]) ):
-			if( LIS[index][tuple][1] == index ):
-				print lst[index],str
-			else:
-				self.printLIS_h(lst, LIS, LIS[index][tuple][1], `lst[index]`+" "+str)
 
 
 	#to do
@@ -121,12 +124,14 @@ if __name__ == '__main__':
 
 	seq = Sequence()
 	step1 = seq.readFile('cargo.txt')
-	#step2 = seq.longest_seq_rec(step1)
-	step4 = seq.longest_seq_iter(step1)
-	print step4
 
+	#step2a = seq.longest_seq_rec(step1)
+	#step2b = seq.patch_out(step2a)
 
-	#rec_lol = Counter(rec_lol)
+	step3a = seq.longest_seq_iter(step1)
+	step3b = seq.patch_out(step3a)
+	step3c = seq.get_cost_iter(step1, 0)
+	print 'cost: ',step3c
 
 #	factorial = Counter(factorial)
 #	print factorial(int(sys.argv[1]))
