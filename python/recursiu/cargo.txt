@@ -1,0 +1,10 @@
+sparto 8
+sparto 10
+garum 3
+armis 9
+armis 10
+sparto 8
+garum 2
+armis 5
+garum 6
+frumento 8

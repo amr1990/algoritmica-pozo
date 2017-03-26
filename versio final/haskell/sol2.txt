@@ -1,0 +1,3 @@
+pannum 2
+sparto 4
+armis 6

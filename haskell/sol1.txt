@@ -1,0 +1,4 @@
+frumento 2
+frumento 6
+sparto 7
+armis 9

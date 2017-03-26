@@ -1,0 +1,5 @@
+pannum 2
+armis 3
+armis 5
+pannum 8
+frumento 10

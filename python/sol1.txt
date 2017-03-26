@@ -1,4 +1,0 @@
-frumento 1
-sparto 7
-armis 9
-pannum 10

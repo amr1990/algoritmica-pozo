@@ -1,0 +1,5 @@
+armis 5
+armis 7
+pannum 8
+pannum 9
+sparto 10
